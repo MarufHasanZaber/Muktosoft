@@ -42,7 +42,7 @@ class Welcome extends CI_Controller {
             if($info=="temperature"){
                 $kelvin = $weather->main->temp;
                 $celcius = $kelvin - 273.15;
-                echo json_encode( array('answer' => $celcius));
+                echo "<html><h2>".json_encode( array('answer' => $celcius))."</h2></html>";
             }
             else if($info=="humidity"){
                 $humid = $weather->main->humidity;
@@ -50,17 +50,17 @@ class Welcome extends CI_Controller {
             }
             else if($info=="clouds"){
                 if($assert=="Clouds" || $assert=="clouds"){
-                    echo json_encode( array('answer' => "Yes"));
+                    echo "<html><h2>".json_encode( array('answer' => "Yes"))."</h2></html>";
                 }
-                else echo json_encode( array('answer' => "No"));
+                else echo "<html><h2>".json_encode( array('answer' => "No"))."</h2></html>";
             }
             else if($info=="rain"){
-                if($assert=="Rain"||$assert=="rain") echo json_encode( array('answer' => "Yes"));
-                else echo json_encode( array('answer' => "No"));
+                if($assert=="Rain"||$assert=="rain") echo "<html><h2>".json_encode( array('answer' => "Yes"))."</h2></html>";
+                else echo "<html><h2>".json_encode( array('answer' => "No"))."</h2></html>";
             }
             else if($info=="clear weather"){
-                if($assert=="Clear"||$assert=="clear") echo json_encode( array('answer' => "Yes"));
-                else echo json_encode( array('answer' => "No"));
+                if($assert=="Clear"||$assert=="clear") echo "<html><h2>".json_encode( array('answer' => "Yes"))."</h2></html>";
+                else echo "<html><h2>".json_encode( array('answer' => "No"))."</h2></html>";
             }
          }
 
