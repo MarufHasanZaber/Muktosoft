@@ -12,7 +12,7 @@ class Welcome extends CI_Controller {
             for($i = 0; $i < count($array);$i++){
                 if($array[$i] =="Hi" || $array[$i]=="hi" || $array[$i]=="Hello"||$array[$i]=="hello"){
                         //echo "Hello, Kitty! Nice to meet you. :)";
-                   echo json_encode( array('answer' => "Hello, Kitty! Nice to meet you. :)"));
+                   echo "<html><h2>".json_encode( array('answer' => "Hello, Kitty! Nice to meet you. :)"))."</h2></html>";
                    $flag=1;
                    break;
                 }
@@ -21,14 +21,14 @@ class Welcome extends CI_Controller {
                             ||$array[$i+1]=="Evening"||$array[$i+1]=="evening"
                             ||$array[$i+1]=="Night"||$array[$i+1]=="night")){
                         //echo "Hello, Kitty! Thank you. Good ".$array[$i+1]. ":)";
-                     echo json_encode( array('answer' => "Hello, Kitty! Thank you. Good ".$array[$i+1]. ":)"));
+                     echo "<html><h2>".json_encode( array('answer' => "Hello, Kitty! Thank you. Good ".$array[$i+1]. ":)"))."</h2></html>";
                      $flag=1;
                      break;
                 }
              }
                  if($flag==0){
                      //echo "Hey Kitty! Are you saying something??";
-                     echo json_encode( array('answer' => "Hey Kitty! Are you saying something??"));
+                     echo "<html><h2>".json_encode( array('answer' => "Hey Kitty! Are you saying something??"))."</h2></html>";
                  }
          }
 
@@ -128,7 +128,7 @@ class Welcome extends CI_Controller {
                 $str="xml:lang";
                 foreach ($all as $row) {
                     if($row->$target->$str=="en"){
-                        echo json_encode( array('answer' => $row->$target->value ));
+                        echo json_encode( array('answer' =>utf8_decode ( $row->$target->value )));
                         return;
                     }
                 }
