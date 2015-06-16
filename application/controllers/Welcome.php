@@ -128,7 +128,7 @@ class Welcome extends CI_Controller {
                 $str="xml:lang";
                 foreach ($all as $row) {
                     if($row->$target->$str=="en"){
-                        echo json_encode( array('answer' =>utf8_decode ( $row->$target->value )));
+                        echo json_encode( array('answer' =>$row->$target->value ));
                         return;
                     }
                 }
