@@ -3,29 +3,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 	public function index(){    
-        
+            $this->load->view('dir.php');
         }
 
         function greetings(){
-                $array=$keywords = preg_split("/[\s,.:;?!]+/",$_GET['q']);
-                $flag=0;
-                for($i = 0; $i < count($array);$i++){
-                    if($array[$i] =="Hi" || $array[$i]=="hi" || $array[$i]=="Hello"||$array[$i]=="hello"){
+            $array=$keywords = preg_split("/[\s,.:;?!]+/",$_GET['q']);
+            $flag=0;
+            for($i = 0; $i < count($array);$i++){
+                if($array[$i] =="Hi" || $array[$i]=="hi" || $array[$i]=="Hello"||$array[$i]=="hello"){
                         //echo "Hello, Kitty! Nice to meet you. :)";
-                        echo json_encode( array('answer' => "Hello, Kitty! Nice to meet you. :)"));
-                        $flag=1;
-                        break;
-                    }
-                    else if($i!=(count($array)-1) && ($array[$i]=="Good" ||$array[$i]=="good" )
+                   echo json_encode( array('answer' => "Hello, Kitty! Nice to meet you. :)"));
+                   $flag=1;
+                   break;
+                }
+                else if($i!=(count($array)-1) && ($array[$i]=="Good" ||$array[$i]=="good" )
                             && ($array[$i+1]=="Morning"||$array[$i+1]=="morning"
                             ||$array[$i+1]=="Evening"||$array[$i+1]=="evening"
                             ||$array[$i+1]=="Night"||$array[$i+1]=="night")){
                         //echo "Hello, Kitty! Thank you. Good ".$array[$i+1]. ":)";
-                        echo json_encode( array('answer' => "Hello, Kitty! Thank you. Good ".$array[$i+1]. ":)"));
-                        $flag=1;
-                        break;
-                    }
-                 }
+                     echo json_encode( array('answer' => "Hello, Kitty! Thank you. Good ".$array[$i+1]. ":)"));
+                     $flag=1;
+                     break;
+                }
+             }
                  if($flag==0){
                      //echo "Hey Kitty! Are you saying something??";
                      echo json_encode( array('answer' => "Hey Kitty! Are you saying something??"));
@@ -99,24 +99,19 @@ class Welcome extends CI_Controller {
          }
 
          function qa(){
-
             $question=urlencode($_GET['q']);
             $jsonurl = "http://quepy.machinalis.com/engine/get_query?question=".$question;
             $json = file_get_contents($jsonurl);
             $raw=json_decode($json);
             $query=$raw->queries[0]->query;
-
             $target=trim($raw->queries[0]->target,"?");
-            
             $query=urlencode($query);
             if($query==null){
                echo json_encode( array('answer' => "Your majesty! Jon Snow knows nothing! So do I!" ));
                return;
             }
-
             $url="http://dbpedia.org/sparql?query=".$query."&format=json";
             $json1=file_get_contents($url);
-            //echo $json1;
             $json1=json_decode($json1);
             $all= $json1->results->bindings;
 
@@ -140,6 +135,5 @@ class Welcome extends CI_Controller {
             }
             echo json_encode(array('answer' => $all[rand(0,(count($all)-1))]->$target->value));
             return;
-
          }
 }
