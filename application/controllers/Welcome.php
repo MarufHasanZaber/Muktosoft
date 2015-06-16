@@ -46,7 +46,7 @@ class Welcome extends CI_Controller {
             }
             else if($info=="humidity"){
                 $humid = $weather->main->humidity;
-                echo json_encode( array('answer' => $humid));
+                echo "<html><h2>".json_encode( array('answer' => $humid))."</h2></html>";
             }
             else if($info=="clouds"){
                 if($assert=="Clouds" || $assert=="clouds"){
@@ -133,7 +133,7 @@ class Welcome extends CI_Controller {
                     }
                 }
             }
-            echo json_encode(array('answer' => $all[rand(0,(count($all)-1))]->$target->value));
+            echo "<html><h2>". json_encode(array('answer' => $all[rand(0,(count($all)-1))]->$target->value))."</h2></html>";
             return;
          }
 }
